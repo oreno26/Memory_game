@@ -1,31 +1,41 @@
-let button = document.getElementById("start");
-let container = document.getElementById("container");
-button.addEventListener("click", startGame);
-let click = 0;
-function startGame(evt) {
-  console.log("one");
-  for (let i = 16; i > 0; i--) {
-    let card = document.createElement("div");
-    card.classList.add("cardback");
-    card.classList.add("card");
-    card.setAttribute("id", `card${i}`);
-    card.addEventListener("click", flip);
-    container.appendChild(card);
-    button.style.display = "none";
-  }
-}
+//making the cards i want a 4*4 grid so i need 8 cards.
+const cardsArray =[
+    { 
+        bike: `gz250`,
+        img: ``,
+    },
+    { 
+        bike: `cb500s`,
+        img: ``,
+    },
+    { 
+        bike: `cbr600f4i`,
+        img: ``,
+    },
+    { 
+        bike: `leoncino500`,
+        img: ``,
+    },
+    { 
+        bike: `bmwR1100rs`,
+        img: ``,
+    },
+    { 
+        bike: `vfr800fi`,
+        img: ``,
+    },
+    { 
+        bike: `sv650`,
+        img: ``,
+    },
+    { 
+        bike: `trident660`,
+        img: ``,
+    },
+]
+console.log(cardsArray.length);
+//selection of cards ready
 
-function flip(evt) {
-  let flipped = document.getElementsByClassName("cardfront");
-  if (click <= 1) {
-    evt.target.classList.toggle("cardfront");
-    evt.target.classList.toggle("cardback")
-    click++;
-    console.log(click);
-  } else if (click >= 2) {
-    for (let i = flipped.length - 1; i >= 0; i--){
-        document.getElementsByClassName("cardfront")[i].classList.value = (`cardback card`)
-    click = 0;
-    }
-  }
-}
+const game = document.getElementById(`game`)
+
+const grid 
