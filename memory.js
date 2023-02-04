@@ -33,7 +33,7 @@ const cardsArray = [
     img: `Pics/trident660.jpeg`,
   },
 ];
-console.log(cardsArray.length);
+// console.log(cardsArray.length);
 //selection of cards ready
 //making a start button
 // let grid
@@ -53,7 +53,6 @@ function Gamestart() {
   let gameGrid = cardsArray.concat(cardsArray);
   gameGrid.sort(() => 0.5 - Math.random());
   grid.addEventListener(`click`, selector);
-  console.log(gameGrid);
 
   gameGrid.forEach((item) => {
     const card = document.createElement(`div`);
@@ -84,21 +83,20 @@ let delay = 1000;
 function selector(evt) {
   let clicked = evt.target;
   if (
-    clicked.nodeName === 'SECTION' ||
+    clicked.nodeName === "SECTION" ||
     clicked === previousTarget ||
-    clicked.parentNode.classList.contains('selected')
+    clicked.parentNode.classList.contains("selected")
   ) {
-    return
+    return;
   }
   if (count < 2) {
     count++;
     console.log(count);
     if (count === 1) {
-      clicked.classList.add(`selected`);
+      clicked.parentNode.classList.add(`selected`);
       firstGuess = clicked.parentNode.dataset.bike;
-      console.log(firstGuess);
     } else {
-      clicked.classList.add(`selected`);
+      clicked.parentNode.classList.add(`selected`);
       secondGuess = clicked.parentNode.dataset.bike;
     }
   }
@@ -106,6 +104,17 @@ function selector(evt) {
     if (firstGuess === secondGuess) {
       setTimeout(match, delay);
       setTimeout(resetGuesses, delay);
+      score++;
+      console.log(score);
+      //game win to reset and aler user of his win!
+      if (score === 8) {
+        alert("you win!");
+        document
+          .getElementById("game")
+          .removeChild(document.getElementById("game").firstElementChild);
+        button.style.visibility = `visible`;
+        score = 0;
+      }
     } else {
       setTimeout(resetGuesses, delay);
     }
@@ -113,6 +122,7 @@ function selector(evt) {
   previousTarget = clicked;
 }
 //
+let score = 0;
 const match = () => {
   let selected = document.querySelectorAll(`.selected`);
   selected.forEach((card) => {
