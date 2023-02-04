@@ -52,7 +52,7 @@ function Gamestart() {
   //   grid.addEventListener(`click`, selector);
   let gameGrid = cardsArray.concat(cardsArray);
   gameGrid.sort(() => 0.5 - Math.random());
-  
+  grid.addEventListener(`click`, selector);
 
   gameGrid.forEach((item) => {
     const card = document.createElement(`div`);
@@ -69,7 +69,7 @@ function Gamestart() {
     grid.appendChild(card);
     card.appendChild(front);
     card.appendChild(back);
-    card.addEventListener(`click`, selector);
+    // card.addEventListener(`click`, selector);
   });
 }
 //Game board down, now the mechanics
