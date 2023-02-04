@@ -37,27 +37,34 @@ body {
 .front {
   width: 150px;
   height: 150px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
-  
 }
 .front {
   background-color: red;
   background-image: url("Pics/cardback.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
   /* transform:  rotateY(180deg); */
 }
+
 .back,
 .front {
+  /* display: flex; */
   position: absolute;
-  backface-visibility: hidden;
+  backface-visibility: hidden; 
 }
+
 .back {
   /* transform: rotateY(180deg); */
+  background-color: antiquewhite;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 .selected {
   border: 0.25rem solid rgb(255, 0, 0);
   transform:  rotateY(180deg);
+
 }
 
 .match {

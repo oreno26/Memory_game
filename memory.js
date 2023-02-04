@@ -53,6 +53,7 @@ function Gamestart() {
   let gameGrid = cardsArray.concat(cardsArray);
   gameGrid.sort(() => 0.5 - Math.random());
   grid.addEventListener(`click`, selector);
+  console.log(gameGrid);
 
   gameGrid.forEach((item) => {
     const card = document.createElement(`div`);
@@ -82,15 +83,18 @@ let delay = 1000;
 
 function selector(evt) {
   let clicked = evt.target;
-  if (evt.target.nodename === `section` || previousTarget === clicked) {
-    return;
+  if (
+    clicked.nodeName === 'SECTION' ||
+    clicked === previousTarget ||
+    clicked.parentNode.classList.contains('selected')
+  ) {
+    return
   }
   if (count < 2) {
     count++;
     console.log(count);
     if (count === 1) {
       clicked.classList.add(`selected`);
-    //   firstGuess = clicked.dataset.bike;
       firstGuess = clicked.parentNode.dataset.bike;
       console.log(firstGuess);
     } else {
