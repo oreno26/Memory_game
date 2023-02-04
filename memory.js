@@ -36,6 +36,7 @@ const cardsArray = [
 console.log(cardsArray.length);
 //selection of cards ready
 //making a start button
+// let grid
 const button = document.getElementById(`button`);
 button.addEventListener(`click`, Gamestart);
 //
@@ -48,16 +49,80 @@ function Gamestart() {
   grid.setAttribute(`class`, `grid`);
 
   game.appendChild(grid);
-
+  //   grid.addEventListener(`click`, selector);
   let gameGrid = cardsArray.concat(cardsArray);
   gameGrid.sort(() => 0.5 - Math.random());
+  
 
   gameGrid.forEach((item) => {
     const card = document.createElement(`div`);
     card.classList.add(`card`);
     card.dataset.bike = item.bike;
-    card.style.backgroundImage = `url(${item.img})`;
+    //front of card
+    const front = document.createElement(`div`);
+    front.classList.add(`front`);
+    //back of card
+    const back = document.createElement(`div`);
+    back.classList.add(`back`);
+    back.style.backgroundImage = `url(${item.img})`;
+    //appending
     grid.appendChild(card);
-    console.log(2);
+    card.appendChild(front);
+    card.appendChild(back);
+    card.addEventListener(`click`, selector);
   });
 }
+//Game board down, now the mechanics
+//selctor
+let count = 0;
+let firstGuess = "";
+let secondGuess = "";
+let previousTarget = null;
+let delay = 1000;
+
+function selector(evt) {
+  let clicked = evt.target;
+  if (evt.target.nodename === `section` || previousTarget === clicked) {
+    return;
+  }
+  if (count < 2) {
+    count++;
+    console.log(count);
+    if (count === 1) {
+      clicked.classList.add(`selected`);
+    //   firstGuess = clicked.dataset.bike;
+      firstGuess = clicked.parentNode.dataset.bike;
+      console.log(firstGuess);
+    } else {
+      clicked.classList.add(`selected`);
+      secondGuess = clicked.parentNode.dataset.bike;
+    }
+  }
+  if (firstGuess !== `` && secondGuess !== ``) {
+    if (firstGuess === secondGuess) {
+      setTimeout(match, delay);
+      setTimeout(resetGuesses, delay);
+    } else {
+      setTimeout(resetGuesses, delay);
+    }
+  }
+  previousTarget = clicked;
+}
+//
+const match = () => {
+  let selected = document.querySelectorAll(`.selected`);
+  selected.forEach((card) => {
+    card.classList.add(`match`);
+  });
+};
+
+const resetGuesses = () => {
+  firstGuess = "";
+  count = 0;
+  secondGuess = "";
+
+  var selected = document.querySelectorAll(`.selected`);
+  selected.forEach((card) => {
+    card.classList.remove(`selected`);
+  });
+};
