@@ -1,37 +1,77 @@
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+}
+
+body {
+  background-image: linear-gradient(to right, rgb(0, 255, 0), black);
   display: flex;
   justify-content: center;
-  align-items: center;
-  flex-direction: column;
 }
-body {
-  background-image: linear-gradient(to right, rgb(8, 0, 0), rgb(9, 255, 0));
-}
-#container {
-  border: 0.4rem rgb(0, 0, 0) solid;
+
+.grid {
+  /* max-width: 960px;
+  margin: 0 auto; */
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  gap: 4px;
+  border: 0.5rem double black;
+  /* background-color: rgb(0, 0, 0); */
 }
+
+
 
 .card {
-  width: 100px;
-  height: 100px;
-  border: solid rgb(0, 0, 0) 5px;
+  margin: 5px;
+  /* background-color: #33ff00; */
+  border: #33ff00 0.2rem solid;
+  position: relative;
+  transition: all 0.4 linear;
+  transform-style: preserve-3d;
+}
+ 
+.card,
+.back,
+.front {
+  width: 150px;
+  height: 150px;
+  visibility: visible;
 }
 
-.card:hover {
-  cursor: pointer;
-}
-
-.cardback {
-  background-color: rgb(255, 0, 0);
-  background-image: url(Pics/cardback.png);
+.front {
+  /* background-color: red; */
+  /* background-image: url("Pics/cardback.png");
   background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center; */
+  /* transform:  rotateY(180deg); */
 }
 
-.cardfront {
-  background-color: rgb(0, 225, 255);
+.back,
+.front {
+  /* display: flex; */
+  position: absolute;
+  backface-visibility: hidden; 
 }
+
+.back {
+  transform: rotateY(180deg);
+  background-color: antiquewhite;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.selected {
+  border: 0.25rem solid rgb(255, 0, 0);
+  transform:  rotateY(180deg);
+
+}
+
+.match {
+  border: rgb(0, 255, 255) solid 0.025rem;
+  background-image: url("Pics/cardback.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  }
