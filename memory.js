@@ -108,7 +108,7 @@ function selector(evt) {
       console.log(score);
       //game win to reset and aler user of his win!
       if (score === 8) {
-        alert("you win!");
+        alert("you win! This game has been brought to you by Oren Ovadia");
         document
           .getElementById("game")
           .removeChild(document.getElementById("game").firstElementChild);
